@@ -6,18 +6,18 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:57:44 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/03/22 12:00:25 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:35:17 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_alloc_null(void *w)
-{
-	w = (void *) malloc(sizeof(NULL));
-	w = NULL;
-	return (w);
-}
+// static char	*ft_alloc_null(void *w)
+// {
+// 	w = (void *) malloc(sizeof(NULL));
+// 	w = NULL;
+// 	return (w);
+// }
 
 static void	ft_freeall(char **words, int wid)
 {
@@ -97,6 +97,6 @@ char	**ft_split(char const *s, char c)
 		while (*(ss + i) && *(ss + i) != c)
 			i++;
 	}
-	words[wid] = ft_alloc_null(words[wid]);
+	words[wid] = NULL;
 	return (words);
 }

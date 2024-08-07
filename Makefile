@@ -4,9 +4,14 @@ CFLAGS = -Wall -Wextra -Werror -Iinlude/
 NAME = push_swap
 
 FILES = \
-	src/push_swap.c
+	src/ft_stack.c \
+	src/push_swap.c \
+	src/main.c
 
 OBJS = ${FILES:.c=.o}
+
+PRINTF = ft_printf
+
 
 all: $(NAME)
 
@@ -14,12 +19,15 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@make -C $(PRINTF)
+	$(CC) $(CFLAGS) $(OBJS) $(PRINTF)/libftprintf.a -o $(NAME)
 
 clean:
+	@make -C $(PRINTF) clean
 	rm -f $(OBJS)
 
 fclean: clean
+	@make -C $(PRINTF) fclean
 	rm -f $(NAME)
 
 re: fclean all
