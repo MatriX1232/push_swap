@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 11:45:47 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/07/31 13:58:51 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:25:21 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,29 @@
 // 	int		size;
 // }	t_stack;
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
+#include "../ft_printf/ft_printf.h"
 
 typedef struct s_node {
 	int value;
+	int	index;
 	struct s_node *next;
 } t_node;
 
 typedef struct s_stack {
 	t_node *top;
+	int		size;
 } t_stack;
 
 // Stack operations
-void    push(t_stack *stack, int value);
-int     pop(t_stack *stack);
-void    swap(t_stack *stack);
-void    rotate(t_stack *stack);
-void    reverse_rotate(t_stack *stack);
+int		push(t_stack *stack_to, t_stack *stack_from);
+int		pop(t_stack *stack);
+int		swap(t_stack *stack);
+int		rotate(t_stack *stack);
+int		reverse_rotate(t_stack *stack);
 
 // Utilities
 t_stack *create_stack();
@@ -65,7 +70,32 @@ void    rrb(t_stack *b);
 void    rrr(t_stack *a, t_stack *b);
 
 // Quicksort algorithm
-void    quicksort(t_stack *a, t_stack *b, int size);
-void    sort_three(t_stack *a);
+// void    quicksort(t_stack *a, t_stack *b, int size);
+// void    sort_three(t_stack *a);
+
+//	Radix algorithm
+void		sort_radix(t_stack *a, t_stack *b);
+void		sort_simple(t_stack *a, t_stack *b);
+void		sort_3(t_stack *stack);
+void		sort_4(t_stack *a, t_stack *b);
+void		sort_5(t_stack *a, t_stack *b);
+
+
+//	FT_LST_UTILS
+int			ft_lstsize(t_stack *stack);
+t_node		*ft_lstlast(t_stack *stack);
+t_node		*ft_lstnew(t_node *node, int val);
+void		ft_lstadd_front(t_stack *stack, t_node *new);
+void		ft_lstadd_back(t_stack *stack, t_node *new);
+
+//	UTILS
+int			is_sorted(t_stack *stack);
+int			get_dis(t_stack *stack, int idx);
+int			get_min_index(t_stack *stack, int val);
+void		ft_print_error(char *str);
+int			ft_check_args(int argc, char *argv[]);
+void		ft_free(char **parms);
+void		index_stack(t_stack *stack);
+void		ft_free_stack(t_stack *stack);
 
 #endif

@@ -5,29 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 14:32:01 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/07 17:41:46 by msolinsk         ###   ########.fr       */
+/*   Created: 2024/08/09 13:23:49 by msolinsk          #+#    #+#             */
+/*   Updated: 2024/08/09 16:29:06 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// Function to reverse the order of elements in stack a
-// void reverse_stack(t_push_swap *ps)
-// {
-//     int size = ps->a->top + 1;
-//     // Move all elements to stack b and then back to stack a
-//     for (int i = 0; i < size; i++)
-//     {
-//         pb(ps);
-//     }
-//     for (int i = size - 1; i >= 0; i--)
-//     {
-//         pa(ps);
-//     }
-// }
-
-int ft_tab_len(char **tab)
+int	ft_get_tab_len(char **tab)
 {
 	int	len;
 
@@ -37,47 +22,71 @@ int ft_tab_len(char **tab)
 	return (len);
 }
 
-int main(int argc, char *argv[])
+static void	ft_initialize_stack(int argc, char *argv[], t_stack *stack)
 {
-	if (argc != 2)
+	int 	i;
+	char	**parms;
+	t_node	*new;
+
+	new = NULL;
+	if (argc == 2)
 	{
-		ft_printf("BAD ARGUMENTS!\n");
-		ft_printf("Usage: %s <int int int>\n", argv[0]);
-		return (EXIT_FAILURE);
+		i = 0;
+		parms = ft_split(argv[1], ' ');
 	}
-
-	char	**parm = ft_split(argv[1], ' ');
-    int stack_size = ft_tab_len(parm);
-    int	initial_stack[stack_size];
-
-	int	i = 0;
-	while (i < stack_size)
+	else
 	{
-		initial_stack[i] = ft_atoi(parm[i]);
+		i = 1;
+		parms = argv;
+	}
+	while (parms[i])
+	{
+		new = ft_lstnew(new, ft_atoi(parms[i]));
+		ft_printf("<NODE> %d", new->value);
+		ft_lstadd_back(stack, new);
 		i++;
 	}
-	t_push_swap *ps = (t_push_swap *)malloc(sizeof(t_push_swap));
-    ps->a = init_stack(stack_size);
-    ps->b = init_stack(stack_size);
-    ps->operations = (char **)malloc(1000 * sizeof(char *));
-    ps->op_count = 0;
+	ft_printf("Here\n");
+	index_stack(stack);
+	if (argc == 2)
+		ft_free(parms);
+}
 
-    for (int i = stack_size - 1; i >= 0; i--)
-        push(ps->a, initial_stack[i]);
+static void	ft_sort_stack(t_stack *a, t_stack *b)
+{
+	if (ft_lstsize(a) < 6)
+		sort_simple(a, b);
+	else
+		sort_radix(a, b);
+}
 
-    sort(ps);
+int	main(int argc, char *argv[])
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
-	printf("Sorted stack: ");
-    for (int i = 0; i <= ps->a->top; i++)
-        printf("%d ", ps->a->data[i]);
-    printf("\n");
-
-    // Reverse the sorted stack
-    // reverse_stack(ps);
-
-    free_push_swap(ps);
-	for (int i=ft_tab_len(parm); i >= 0; i--)
-		free(parm[i]);
-	free(parm);
-    return 0;
+	// if (argc != 2)
+	// {
+	// 	ft_print_error("BAD ARGUMENTS!");
+	// 	ft_print_error("USAGE: ./push_swap <LIST OF NUMBERS>");
+	// }
+	stack_a = (t_stack *) malloc(1 * sizeof(t_stack));
+	stack_b = (t_stack *) malloc(1 * sizeof(t_stack));
+	if (!stack_a || !stack_b)
+		return (EXIT_FAILURE);
+	stack_a = NULL;
+	stack_b = NULL;
+	if (ft_check_args(argc, argv) != 1)
+		return (EXIT_FAILURE);
+	ft_initialize_stack(argc, argv, stack_a);
+	if (is_sorted(stack_a))
+	{
+		ft_free_stack(stack_a);
+		ft_free_stack(stack_b);
+		return (EXIT_SUCCESS);
+	}
+	ft_sort_stack(stack_a, stack_b);
+	ft_free_stack(stack_a);
+	ft_free_stack(stack_b);
+	return (EXIT_SUCCESS);
 }

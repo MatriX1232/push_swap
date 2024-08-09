@@ -4,14 +4,23 @@ CFLAGS = -Wall -Wextra -Werror -Iinlude/
 NAME = push_swap
 
 FILES = \
-	src/ft_stack.c \
-	src/push_swap.c \
+	src/lst_utils.c \
+	src/s_op.c \
+	src/p_op.c \
+	src/r_op.c \
+	src/rr_op.c \
+	src/simple_sort_3.c \
+	src/simple_sort_4.c \
+	src/simple_sort_5.c \
+	src/simple_sort.c \
+	src/radix_sort.c \
+	src/utils.c \
+	src/ft_argv_init.c \
 	src/main.c
-
-OBJS = ${FILES:.c=.o}
 
 PRINTF = ft_printf
 
+OBJS = ${FILES:.c=.o}
 
 all: $(NAME)
 
