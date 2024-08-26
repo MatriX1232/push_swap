@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 11:45:47 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/09 16:25:21 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/24 09:58:44 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		sort_5(t_stack *a, t_stack *b);
 //	FT_LST_UTILS
 int			ft_lstsize(t_stack *stack);
 t_node		*ft_lstlast(t_stack *stack);
-t_node		*ft_lstnew(t_node *node, int val);
+t_node		*ft_lstnew(int val);
 void		ft_lstadd_front(t_stack *stack, t_node *new);
 void		ft_lstadd_back(t_stack *stack, t_node *new);
 

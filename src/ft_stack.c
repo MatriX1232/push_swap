@@ -2,10 +2,14 @@
 
 t_stack *init_stack(int size)
 {
-    t_stack *stack = (t_stack *)malloc(sizeof(t_stack));
-    stack->data = (int *)malloc(size * sizeof(int));
-    stack->top = -1;
-    return stack;
+	t_stack	*stack;
+
+	stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	stack->data = (int *)malloc(size * sizeof(int));
+	stack->top = -1;
+	return stack;
 }
 
 void push(t_stack *stack, int value)

@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:23:49 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/09 16:29:06 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:12:49 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,27 @@ int	ft_get_tab_len(char **tab)
 	return (len);
 }
 
-static void	ft_initialize_stack(int argc, char *argv[], t_stack *stack)
+static t_stack	*ft_init_stack()
+{
+	t_stack	*stack;
+
+	stack = (t_stack *) malloc(1 * sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	stack->size = 0;
+	stack->top = NULL;
+	return (stack);
+}
+
+static void	ft_fill_stack(int argc, char *argv[], t_stack *stack)
 {
 	int 	i;
 	char	**parms;
 	t_node	*new;
 
-	new = NULL;
+	i = 0;
 	if (argc == 2)
-	{
-		i = 0;
 		parms = ft_split(argv[1], ' ');
-	}
 	else
 	{
 		i = 1;
@@ -41,8 +50,8 @@ static void	ft_initialize_stack(int argc, char *argv[], t_stack *stack)
 	}
 	while (parms[i])
 	{
-		new = ft_lstnew(new, ft_atoi(parms[i]));
-		ft_printf("<NODE> %d", new->value);
+		new = ft_lstnew(ft_atoi(parms[i]));
+		ft_printf("<ADD NODE> val=%d\n", new->value);
 		ft_lstadd_back(stack, new);
 		i++;
 	}
@@ -70,15 +79,13 @@ int	main(int argc, char *argv[])
 	// 	ft_print_error("BAD ARGUMENTS!");
 	// 	ft_print_error("USAGE: ./push_swap <LIST OF NUMBERS>");
 	// }
-	stack_a = (t_stack *) malloc(1 * sizeof(t_stack));
-	stack_b = (t_stack *) malloc(1 * sizeof(t_stack));
+	stack_a = ft_init_stack();
+	stack_b = ft_init_stack();
 	if (!stack_a || !stack_b)
 		return (EXIT_FAILURE);
-	stack_a = NULL;
-	stack_b = NULL;
 	if (ft_check_args(argc, argv) != 1)
 		return (EXIT_FAILURE);
-	ft_initialize_stack(argc, argv, stack_a);
+	ft_fill_stack(argc, argv, stack_a);
 	if (is_sorted(stack_a))
 	{
 		ft_free_stack(stack_a);
