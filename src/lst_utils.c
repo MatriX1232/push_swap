@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:16:10 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/26 23:34:40 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:28:43 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ t_node	*ft_lstlast(t_stack *stack)
 {
 	t_node	*head;
 
+	if (!stack || !stack->top)
+		return (NULL);
 	head = stack->top;
-	while (head != NULL)
+	while (head->next != NULL)
 		head = head->next;
 	return (head);
 }
@@ -59,17 +61,16 @@ void	ft_lstadd_back(t_stack *stack, t_node *new)
 {
 	t_node	*last;
 
+	if (!new)
+		return ;
 	if (stack->top)
 	{
-		// ft_printf("NOT First here! <%d>\n", new->value);
 		last = ft_lstlast(stack);
 		new->next = NULL;
 		last->next = new;
-		ft_printf("LAST val=%d\n", last->value);
 	}
 	else
 	{
-		// ft_printf("First here! <%d>\n", new->value);
 		stack->top = new;
 		stack->top->next = NULL;
 	}

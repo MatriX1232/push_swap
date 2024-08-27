@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:23:49 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/24 10:12:49 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:27:45 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,9 @@ static void	ft_fill_stack(int argc, char *argv[], t_stack *stack)
 	while (parms[i])
 	{
 		new = ft_lstnew(ft_atoi(parms[i]));
-		ft_printf("<ADD NODE> val=%d\n", new->value);
 		ft_lstadd_back(stack, new);
 		i++;
 	}
-	ft_printf("Here\n");
 	index_stack(stack);
 	if (argc == 2)
 		ft_free(parms);

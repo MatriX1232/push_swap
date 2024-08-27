@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:17:34 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/26 15:38:01 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:39:34 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,19 @@ void	sort_radix(t_stack *a, t_stack *b)
 	int		j;
 	int		size;
 	int		b_max;
-	t_node	*head;
+	// t_node	*head;
 
 	i = 0;
 	size = ft_lstsize(a);
 	b_max = get_max_bits(a);
-	head = a->top;
+	// head = a->top;
 	while (i < b_max)
 	{
 		j = 0;
 		while (j++ < size)
 		{
-			head = a->top;
-			if (((head->index  >> i) & 1) == 1)
+			// head = a->top;
+			if (((a->top->index >> i) & 1) == 1)
 				ra(a);
 			else
 				pb(a, b);
