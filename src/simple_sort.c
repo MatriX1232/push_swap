@@ -6,11 +6,25 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:55:47 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/09 15:20:10 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:56:56 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+void	ft_print_stack(t_stack *stack)
+{
+	t_node	*head;
+
+	if (!stack)
+		return ;
+	head = stack->top;
+	while (head != NULL)
+	{
+		ft_printf("%d\n", head->value);
+		head = head->next;
+	}
+}
 
 int	get_min_index(t_stack *stack, int val)
 {
@@ -21,9 +35,9 @@ int	get_min_index(t_stack *stack, int val)
 	min = head->index;
 	while (head->next)
 	{
-		head = head->next;
 		if ((head->index < min) && head->index != val)
 			min = head->index;
+		head = head->next;
 	}
 	return (min);
 }

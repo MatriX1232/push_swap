@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:55:12 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/08 12:22:41 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:53:57 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ int	swap(t_stack *stack)
 
 	head = stack->top;
 	next = head->next;
-
 	if (ft_lstsize(stack) < 2)
 		return (-1);
-
 	if (!head && !next)
 		ft_print_error("No head and next");
 	tmp = head->value;

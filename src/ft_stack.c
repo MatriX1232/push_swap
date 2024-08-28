@@ -1,132 +1,144 @@
-#include "../include/push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_stack.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/28 13:54:30 by msolinsk          #+#    #+#             */
+/*   Updated: 2024/08/28 13:54:34 by msolinsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-t_stack *init_stack(int size)
-{
-	t_stack	*stack;
+// #include "../include/push_swap.h"
 
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	if (!stack)
-		return (NULL);
-	stack->data = (int *)malloc(size * sizeof(int));
-	stack->top = -1;
-	return stack;
-}
+// t_stack *init_stack(int size)
+// {
+// 	t_stack	*stack;
 
-void push(t_stack *stack, int value)
-{
-    stack->data[++stack->top] = value;
-}
+// 	stack = (t_stack *)malloc(sizeof(t_stack));
+// 	if (!stack)
+// 		return (NULL);
+// 	stack->data = (int *)malloc(size * sizeof(int));
+// 	stack->top = -1;
+// 	return stack;
+// }
 
-int pop(t_stack *stack)
-{
-    return stack->data[stack->top--];
-}
+// void push(t_stack *stack, int value)
+// {
+//     stack->data[++stack->top] = value;
+// }
 
-void sa(t_push_swap *ps)
-{
-    if (ps->a->top > 0)
-    {
-        int temp = ps->a->data[ps->a->top];
-        ps->a->data[ps->a->top] = ps->a->data[ps->a->top - 1];
-        ps->a->data[ps->a->top - 1] = temp;
-        add_operation(ps, "sa");
-    }
-}
+// int pop(t_stack *stack)
+// {
+//     return stack->data[stack->top--];
+// }
 
-void sb(t_push_swap *ps)
-{
-    if (ps->b->top > 0)
-    {
-        int temp = ps->b->data[ps->b->top];
-        ps->b->data[ps->b->top] = ps->b->data[ps->b->top - 1];
-        ps->b->data[ps->b->top - 1] = temp;
-        add_operation(ps, "sb");
-    }
-}
+// void sa(t_push_swap *ps)
+// {
+//     if (ps->a->top > 0)
+//     {
+//         int temp = ps->a->data[ps->a->top];
+//         ps->a->data[ps->a->top] = ps->a->data[ps->a->top - 1];
+//         ps->a->data[ps->a->top - 1] = temp;
+//         add_operation(ps, "sa");
+//     }
+// }
 
-void ss(t_push_swap *ps)
-{
-    sa(ps);
-    sb(ps);
-    add_operation(ps, "ss");
-}
+// void sb(t_push_swap *ps)
+// {
+//     if (ps->b->top > 0)
+//     {
+//         int temp = ps->b->data[ps->b->top];
+//         ps->b->data[ps->b->top] = ps->b->data[ps->b->top - 1];
+//         ps->b->data[ps->b->top - 1] = temp;
+//         add_operation(ps, "sb");
+//     }
+// }
 
-void pa(t_push_swap *ps)
-{
-    if (ps->b->top >= 0)
-    {
-        push(ps->a, pop(ps->b));
-        add_operation(ps, "pa");
-    }
-}
+// void ss(t_push_swap *ps)
+// {
+//     sa(ps);
+//     sb(ps);
+//     add_operation(ps, "ss");
+// }
 
-void pb(t_push_swap *ps)
-{
-    if (ps->a->top >= 0)
-    {
-        push(ps->b, pop(ps->a));
-        add_operation(ps, "pb");
-    }
-}
+// void pa(t_push_swap *ps)
+// {
+//     if (ps->b->top >= 0)
+//     {
+//         push(ps->a, pop(ps->b));
+//         add_operation(ps, "pa");
+//     }
+// }
 
-void ra(t_push_swap *ps)
-{
-    if (ps->a->top > 0)
-    {
-        int temp = ps->a->data[ps->a->top];
-        for (int i = ps->a->top; i > 0; i--)
-            ps->a->data[i] = ps->a->data[i - 1];
-        ps->a->data[0] = temp;
-        add_operation(ps, "ra");
-    }
-}
+// void pb(t_push_swap *ps)
+// {
+//     if (ps->a->top >= 0)
+//     {
+//         push(ps->b, pop(ps->a));
+//         add_operation(ps, "pb");
+//     }
+// }
 
-void rb(t_push_swap *ps)
-{
-    if (ps->b->top > 0)
-    {
-        int temp = ps->b->data[ps->b->top];
-        for (int i = ps->b->top; i > 0; i--)
-            ps->b->data[i] = ps->b->data[i - 1];
-        ps->b->data[0] = temp;
-        add_operation(ps, "rb");
-    }
-}
+// void ra(t_push_swap *ps)
+// {
+//     if (ps->a->top > 0)
+//     {
+//         int temp = ps->a->data[ps->a->top];
+//         for (int i = ps->a->top; i > 0; i--)
+//             ps->a->data[i] = ps->a->data[i - 1];
+//         ps->a->data[0] = temp;
+//         add_operation(ps, "ra");
+//     }
+// }
 
-void rr(t_push_swap *ps)
-{
-    ra(ps);
-    rb(ps);
-    add_operation(ps, "rr");
-}
+// void rb(t_push_swap *ps)
+// {
+//     if (ps->b->top > 0)
+//     {
+//         int temp = ps->b->data[ps->b->top];
+//         for (int i = ps->b->top; i > 0; i--)
+//             ps->b->data[i] = ps->b->data[i - 1];
+//         ps->b->data[0] = temp;
+//         add_operation(ps, "rb");
+//     }
+// }
 
-void rra(t_push_swap *ps)
-{
-    if (ps->a->top > 0)
-    {
-        int temp = ps->a->data[0];
-        for (int i = 0; i < ps->a->top; i++)
-            ps->a->data[i] = ps->a->data[i + 1];
-        ps->a->data[ps->a->top] = temp;
-        add_operation(ps, "rra");
-    }
-}
+// void rr(t_push_swap *ps)
+// {
+//     ra(ps);
+//     rb(ps);
+//     add_operation(ps, "rr");
+// }
 
-void rrb(t_push_swap *ps)
-{
-    if (ps->b->top > 0)
-    {
-        int temp = ps->b->data[0];
-        for (int i = 0; i < ps->b->top; i++)
-            ps->b->data[i] = ps->b->data[i + 1];
-        ps->b->data[ps->b->top] = temp;
-        add_operation(ps, "rrb");
-    }
-}
+// void rra(t_push_swap *ps)
+// {
+//     if (ps->a->top > 0)
+//     {
+//         int temp = ps->a->data[0];
+//         for (int i = 0; i < ps->a->top; i++)
+//             ps->a->data[i] = ps->a->data[i + 1];
+//         ps->a->data[ps->a->top] = temp;
+//         add_operation(ps, "rra");
+//     }
+// }
 
-void rrr(t_push_swap *ps)
-{
-    rra(ps);
-    rrb(ps);
-    add_operation(ps, "rrr");
-}
+// void rrb(t_push_swap *ps)
+// {
+//     if (ps->b->top > 0)
+//     {
+//         int temp = ps->b->data[0];
+//         for (int i = 0; i < ps->b->top; i++)
+//             ps->b->data[i] = ps->b->data[i + 1];
+//         ps->b->data[ps->b->top] = temp;
+//         add_operation(ps, "rrb");
+//     }
+// }
+
+// void rrr(t_push_swap *ps)
+// {
+//     rra(ps);
+//     rrb(ps);
+//     add_operation(ps, "rrr");
+// }

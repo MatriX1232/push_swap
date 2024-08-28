@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:23:49 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/27 16:27:45 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:57:42 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_get_tab_len(char **tab)
 	return (len);
 }
 
-static t_stack	*ft_init_stack()
+static t_stack	*ft_init_stack(void)
 {
 	t_stack	*stack;
 
@@ -36,7 +36,7 @@ static t_stack	*ft_init_stack()
 
 static void	ft_fill_stack(int argc, char *argv[], t_stack *stack)
 {
-	int 	i;
+	int		i;
 	char	**parms;
 	t_node	*new;
 
@@ -72,11 +72,6 @@ int	main(int argc, char *argv[])
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	// if (argc != 2)
-	// {
-	// 	ft_print_error("BAD ARGUMENTS!");
-	// 	ft_print_error("USAGE: ./push_swap <LIST OF NUMBERS>");
-	// }
 	stack_a = ft_init_stack();
 	stack_b = ft_init_stack();
 	if (!stack_a || !stack_b)
@@ -91,6 +86,7 @@ int	main(int argc, char *argv[])
 		return (EXIT_SUCCESS);
 	}
 	ft_sort_stack(stack_a, stack_b);
+	(void)ft_print_stack;
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 	return (EXIT_SUCCESS);
