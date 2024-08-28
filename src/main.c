@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:23:49 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/28 13:57:42 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:27:26 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	ft_fill_stack(int argc, char *argv[], t_stack *stack)
 		ft_lstadd_back(stack, new);
 		i++;
 	}
-	index_stack(stack);
+	ft_index_stack(stack);
 	if (argc == 2)
 		ft_free(parms);
 }

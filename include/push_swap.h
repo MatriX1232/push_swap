@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 11:45:47 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/28 13:59:48 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:26:50 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,12 @@ void		ft_lstadd_back(t_stack *stack, t_node *new);
 int			is_sorted(t_stack *stack);
 int			get_dis(t_stack *stack, int idx);
 int			get_min_index(t_stack *stack, int val);
+void		ft_index_stack(t_stack *stack);
 void		ft_print_error(char *str);
 int			ft_check_args(int argc, char *argv[]);
 void		ft_free(char **parms);
 void		index_stack(t_stack *stack);
+void		ft_index_stack(t_stack *stack);
 void		ft_free_stack(t_stack *stack);
 void		ft_print_stack(t_stack *stack);
 

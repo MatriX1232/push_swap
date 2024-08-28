@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:00:14 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/24 09:42:35 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:13:20 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,20 @@ int	get_dis(t_stack *stack, int idx)
 	return (dis);
 }
 
-void	index_stack(t_stack *stack)
-{
-	int		index;
-	t_node	*head;
+// void	index_stack(t_stack *stack)
+// {
+// 	int		index;
+// 	t_node	*head;
 
-	index = 0;
-	head = stack->top;
-	while (head)
-	{
-		head->index = index;
-		index++;
-		head = head->next;
-	}
-}
+// 	index = 0;
+// 	head = stack->top;
+// 	while (head)
+// 	{
+// 		head->index = index;
+// 		index++;
+// 		head = head->next;
+// 	}
+// }
 
 void	ft_free_stack(t_stack *stack)
 {
