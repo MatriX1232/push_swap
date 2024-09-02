@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 12:13:24 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/02 18:56:16 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,6 @@ void	ft_print_error(char *msg)
 	ft_putstr_fd(msg, 1);
 	ft_putstr_fd("\033[39m", 1);
 	exit(EXIT_FAILURE);
-}
-
-void	ft_free(char **parms)
-{
-	int	len;
-
-	len = 0;
-	while (parms[len])
-		len++;
-	while (len >= 0)
-		free(parms[len--]);
 }
 
 int	is_sorted(t_list **stack)
@@ -81,19 +70,4 @@ void	make_top(t_list **stack, int distance)
 		while (tmp-- > 0)
 			rra(stack);
 	}
-}
-
-void	free_stack(t_list **stack)
-{
-	t_list	*head;
-	t_list	*tmp;
-
-	head = *stack;
-	while (head)
-	{
-		tmp = head;
-		head = head->next;
-		free(tmp);
-	}
-	free(stack);
 }

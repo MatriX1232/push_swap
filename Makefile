@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -Iinlude/
 NAME = push_swap
 
 FILES = \
-	src/lst_utils.c \
+	src/ft_lstutils.c \
 	src/s_op.c \
 	src/p_op.c \
 	src/r_op.c \
@@ -14,7 +14,9 @@ FILES = \
 	src/simple_sort_5.c \
 	src/simple_sort.c \
 	src/radix_sort.c \
-	src/utils.c \
+	src/ft_utils.c \
+	src/ft_free.c \
+	src/ft_indexing.c \
 	src/ft_argv_init.c \
 	src/main.c
 

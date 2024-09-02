@@ -1,51 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_indexing.c                                      :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 17:09:58 by msolinsk         ###   ########.fr       */
+/*   Created: 2024/09/02 18:51:49 by msolinsk          #+#    #+#             */
+/*   Updated: 2024/09/02 18:54:56 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static t_list	*get_next_min(t_list **stack)
+static int	ft_get_tab_len(char **parms)
 {
-	t_list	*head;
-	t_list	*min;
-	int		has_min;
+	int	len;
 
-	min = NULL;
-	has_min = 0;
-	head = *stack;
-	if (head)
-	{
-		while (head)
-		{
-			if ((head->index == -1) && (!has_min || head->value < min->value))
-			{
-				min = head;
-				has_min = 1;
-			}
-			head = head->next;
-		}
-	}
-	return (min);
+	len = 0;
+	while (parms[len])
+		len++;
+	return (len);
 }
 
-void	index_stack(t_list **stack)
+void	ft_free(char **parms)
+{
+	int	len;
+
+	len = ft_get_tab_len(parms);
+	while (len >= 0)
+		free(parms[len--]);
+}
+
+void	ft_free_nodes(t_list **stack)
 {
 	t_list	*head;
-	int		index;
+	t_list	*tmp;
 
-	index = 0;
-	head = get_next_min(stack);
+	head = *stack;
 	while (head)
 	{
-		head->index = index++;
-		head = get_next_min(stack);
+		tmp = head;
+		head = head->next;
+		free(tmp);
 	}
+	free(stack);
 }

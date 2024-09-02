@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:17:34 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/09/02 12:17:17 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/02 20:46:15 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,31 @@ static int	get_max_bits(t_list **stack)
 	return (max_bits);
 }
 
-void	radix_sort(t_list **stack_a, t_list **stack_b)
+void	sort_radix(t_list **a, t_list **b)
 {
 	t_list	*head_a;
 	int		i;
 	int		j;
 	int		size;
-	int		max_bits;
+	int		max_b;
 
 	i = 0;
-	head_a = *stack_a;
+	head_a = *a;
 	size = ft_lstsize(head_a);
-	max_bits = get_max_bits(stack_a);
-	while (i < max_bits)
+	max_b = get_max_bits(a);
+	while (i < max_b)
 	{
 		j = 0;
 		while (j++ < size)
 		{
-			head_a = *stack_a;
+			head_a = *a;
 			if (((head_a->index >> i) & 1) == 1)
-				ra(stack_a);
+				ra(a);
 			else
-				pb(stack_a, stack_b);
+				pb(a, b);
 		}
-		while (ft_lstsize(*stack_b) != 0)
-			pa(stack_a, stack_b);
+		while (ft_lstsize(*b) != 0)
+			pa(a, b);
 		i++;
 	}
 }

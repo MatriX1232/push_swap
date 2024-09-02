@@ -6,21 +6,22 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 16:50:10 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/02 20:41:45 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-t_list	*ft_malloc_stack(t_list *stack)
+t_list	**ft_malloc_stack(t_list **stack)
 {
-	stack = (t_list *)malloc(1 * sizeof(t_list));
+	stack = (t_list **) malloc(1 * sizeof(t_list));
 	if (!stack)
-		ft_print_error("CAnnot allocate memory!\n");
+		ft_print_error("Cannot allocate memory!\n");
+	*stack = NULL;
 	return (stack);
 }
 
-static void	initStack(t_list **stack, int argc, char **argv)
+static void	ft_init_stack(t_list **stack, int argc, char **argv)
 {
 	t_list	*new;
 	char	**args;
@@ -45,12 +46,12 @@ static void	initStack(t_list **stack, int argc, char **argv)
 		ft_free(args);
 }
 
-static void	sort_stack(t_list **stack_a, t_list **stack_b)
+static void	sort_stack(t_list **a, t_list **b)
 {
-	if (ft_lstsize(*stack_a) < 6)
-		sort_simple(stack_a, stack_b);
+	if (ft_lstsize(*a) < 6)
+		sort_simple(a, b);
 	else
-		radix_sort(stack_a, stack_b);
+		sort_radix(a, b);
 }
 
 int	main(int argc, char **argv)
@@ -59,22 +60,22 @@ int	main(int argc, char **argv)
 	t_list	**stack_b;
 
 	if (argc < 2)
-		return (-1);
+		return (EXIT_FAILURE);
 	ft_check_args(argc, argv);
-	stack_a = (t_list **)malloc(sizeof(t_list));
-	stack_b = (t_list **)malloc(sizeof(t_list));
-	*stack_a = NULL;
-	*stack_b = NULL;
-	initStack(stack_a, argc, argv);
+	stack_a = NULL;
+	stack_b = NULL;
+	stack_a = ft_malloc_stack(stack_a);
+	stack_b = ft_malloc_stack(stack_b);
+	ft_init_stack(stack_a, argc, argv);
 	if (is_sorted(stack_a))
 	{
-		free_stack(stack_a);
-		free_stack(stack_b);
-		return (0);
+		ft_free_nodes(stack_a);
+		ft_free_nodes(stack_b);
+		return (EXIT_SUCCESS);
 	}
 	sort_stack(stack_a, stack_b);
-	free_stack(stack_a);
-	free_stack(stack_b);
-	return (0);
+	ft_free_nodes(stack_a);
+	ft_free_nodes(stack_b);
+	return (EXIT_SUCCESS);
 }
 

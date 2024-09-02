@@ -5,83 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 11:45:47 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/28 17:26:50 by msolinsk         ###   ########.fr       */
+/*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
+/*   Updated: 2024/09/02 20:59:48 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
-# include <stdbool.h>
-# include <unistd.h>
 # include "../ft_printf/ft_printf.h"
+# include <unistd.h>
+# include <stdlib.h>
 
-typedef struct s_node
+// Stack
+typedef struct s_list
 {
 	int				value;
 	int				index;
-	struct s_node	*next;
-}	t_node;
+	struct s_list	*next;
+}				t_list;
 
-typedef struct s_stack
-{
-	t_node	*top;
-	int		size;
-}	t_stack;
+// FT_LSTUTILS.C
+t_list	*ft_lstnew(int val);
+t_list	*ft_lstlast(t_list *head);
+void	ft_lstadd_front(t_list **stack, t_list *new);
+void	ft_lstadd_back(t_list **stack, t_list *new);
+void	printList(t_list *head);
+int		ft_lstsize(t_list *head);
 
-// Stack operations
-int			push(t_stack *stack_to, t_stack *stack_from);
-int			pop(t_stack *stack);
-int			swap(t_stack *stack);
-int			rotate(t_stack *stack);
-int			reverse_rotate(t_stack *stack);
+// FT_UTILS.C
+void	ft_error(char *msg);
+void	ft_check_args(int argc, char **argv);
+int		is_sorted(t_list **stack);
+int		get_dis(t_list **stack, int index);
+void	make_top(t_list **stack, int distance);
+void	ft_free_nodes(t_list **stack);
+void	ft_free(char **str);
+void	ft_print_error(char *msg);
+int		get_min_index(t_list **stack, int val);
 
-// Utilities
-t_stack		*create_stack(void);
-void		free_stack(t_stack *stack);
-bool		is_empty(t_stack *stack);
-int			stack_size(t_stack *stack);
+// FT_SIMPLE_SORT.C FT_RADIX_SORT.C FT_SORT_5.C FT_SIMPLE_SORT_3.C FT_SIMPLE_SORT_4.C FT_SIMPLE_SORT.C
+void	sort_radix(t_list **a, t_list **b);
+void	simple_sort(t_list **a, t_list **b);
+void	index_stack(t_list **stack);
 
-// Push_swap operations
-void		sa(t_stack *a);
-void		sb(t_stack *b);
-void		ss(t_stack *a, t_stack *b);
-void		pa(t_stack *a, t_stack *b);
-void		pb(t_stack *a, t_stack *b);
-void		ra(t_stack *a);
-void		rb(t_stack *b);
-void		rr(t_stack *a, t_stack *b);
-void		rra(t_stack *a);
-void		rrb(t_stack *b);
-void		rrr(t_stack *a, t_stack *b);
+void	sort_4(t_list **stack_a, t_list **stack_b);
+void	sort_3(t_list **stack);
+void	sort_5(t_list **stack_a, t_list **stack_b);
+void	sort_simple(t_list **a, t_list **b);
 
-//	Radix algorithm
-void		sort_radix(t_stack *a, t_stack *b);
-void		sort_simple(t_stack *a, t_stack *b);
-void		sort_3(t_stack *stack);
-void		sort_4(t_stack *a, t_stack *b);
-void		sort_5(t_stack *a, t_stack *b);
+// *_OP.C
+int		swap(t_list **stack);
+int		push(t_list **stack_to, t_list **stack_from);
+int		rotate(t_list **stack);
+int		reverse_rotate(t_list **stack);
 
-//	FT_LST_UTILS
-int			ft_lstsize(t_stack *stack);
-t_node		*ft_lstlast(t_stack *stack);
-t_node		*ft_lstnew(int val);
-void		ft_lstadd_front(t_stack *stack, t_node *new);
-void		ft_lstadd_back(t_stack *stack, t_node *new);
+void	pa(t_list **a, t_list **b);
+void	pb(t_list **a, t_list **b);
 
-//	UTILS
-int			is_sorted(t_stack *stack);
-int			get_dis(t_stack *stack, int idx);
-int			get_min_index(t_stack *stack, int val);
-void		ft_index_stack(t_stack *stack);
-void		ft_print_error(char *str);
-int			ft_check_args(int argc, char *argv[]);
-void		ft_free(char **parms);
-void		index_stack(t_stack *stack);
-void		ft_index_stack(t_stack *stack);
-void		ft_free_stack(t_stack *stack);
-void		ft_print_stack(t_stack *stack);
+int		ra(t_list **a);
+int		rb(t_list **b);
+int		rr(t_list **a, t_list **b);
+
+int		rra(t_list **a);
+int		rrb(t_list **b);
+int		rrr(t_list **a, t_list **b);
+
+int		sa(t_list **a);
+int		sb(t_list **b);
+int		ss(t_list **a, t_list **b);
 
 #endif
+
