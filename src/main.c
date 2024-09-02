@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 20:41:45 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/02 21:04:47 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ int	main(int argc, char **argv)
 	ft_free_nodes(stack_b);
 	return (EXIT_SUCCESS);
 }
-

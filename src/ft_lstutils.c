@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 19:48:55 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/02 21:04:01 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,3 @@ void	ft_lstadd_back(t_list **stack, t_list *new)
 		(*stack)->next = NULL;
 	}
 }
-

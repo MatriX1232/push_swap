@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 20:59:48 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/02 21:05:59 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ void	ft_free(char **str);
 void	ft_print_error(char *msg);
 int		get_min_index(t_list **stack, int val);
 
-// FT_SIMPLE_SORT.C FT_RADIX_SORT.C FT_SORT_5.C FT_SIMPLE_SORT_3.C FT_SIMPLE_SORT_4.C FT_SIMPLE_SORT.C
+/*
+FT_SIMPLE_SORT.C FT_RADIX_SORT.C
+FT_SORT_5.C FT_SIMPLE_SORT_3.C
+FT_SIMPLE_SORT_4.C FT_SIMPLE_SORT.C
+*/
 void	sort_radix(t_list **a, t_list **b);
 void	simple_sort(t_list **a, t_list **b);
 void	index_stack(t_list **stack);
@@ -76,4 +80,3 @@ int		sb(t_list **b);
 int		ss(t_list **a, t_list **b);
 
 #endif
-
