@@ -5,19 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 12:00:14 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/28 17:13:20 by msolinsk         ###   ########.fr       */
+/*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
+/*   Updated: 2024/09/02 12:13:24 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	is_sorted(t_stack *stack)
+void	ft_print_error(char *msg)
 {
-	t_node	*head;
+	ft_putstr_fd("\033[91m", 1);
+	ft_putstr_fd(msg, 1);
+	ft_putstr_fd("\033[39m", 1);
+	exit(EXIT_FAILURE);
+}
 
-	head = stack->top;
-	while (head && head->next != NULL)
+void	ft_free(char **parms)
+{
+	int	len;
+
+	len = 0;
+	while (parms[len])
+		len++;
+	while (len >= 0)
+		free(parms[len--]);
+}
+
+int	is_sorted(t_list **stack)
+{
+	t_list	*head;
+
+	head = *stack;
+	while (head && head->next)
 	{
 		if (head->value > head->next->value)
 			return (0);
@@ -26,57 +45,55 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-int	get_dis(t_stack *stack, int idx)
+int	get_dis(t_list **stack, int index)
 {
-	int		dis;
-	t_node	*head;
+	t_list	*head;
+	int		distance;
 
-	dis = 0;
-	head = stack->top;
+	distance = 0;
+	head = *stack;
 	while (head)
 	{
-		if (head->index == idx)
+		if (head->index == index)
 			break ;
+		distance++;
 		head = head->next;
-		dis++;
 	}
-	return (dis);
+	return (distance);
 }
 
-// void	index_stack(t_stack *stack)
-// {
-// 	int		index;
-// 	t_node	*head;
-
-// 	index = 0;
-// 	head = stack->top;
-// 	while (head)
-// 	{
-// 		head->index = index;
-// 		index++;
-// 		head = head->next;
-// 	}
-// }
-
-void	ft_free_stack(t_stack *stack)
+void	make_top(t_list **stack, int distance)
 {
-	t_node	*head;
-	t_node	*tmp;
+	t_list	*head;
+	int		tmp;
 
-	head = stack->top;
+	if (distance == 0)
+		return ;
+	head = *stack;
+	tmp = ft_lstsize(head) - distance;
+	if (distance <= (ft_lstsize(head) / 2))
+	{
+		while (distance-- > 0)
+			ra(stack);
+	}
+	else
+	{
+		while (tmp-- > 0)
+			rra(stack);
+	}
+}
+
+void	free_stack(t_list **stack)
+{
+	t_list	*head;
+	t_list	*tmp;
+
+	head = *stack;
 	while (head)
 	{
 		tmp = head;
 		head = head->next;
 		free(tmp);
 	}
-}
-
-void	ft_print_error(char *str)
-{
-	write(1, "\033[91m", 6);
-	write(1, "ERROR: ", 8);
-	write(1, str, ft_strlen(str));
-	write(1, "\n", 1);
-	write(1, "\033[39m", 6);
+	free(stack);
 }

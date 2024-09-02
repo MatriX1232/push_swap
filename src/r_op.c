@@ -6,42 +6,49 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:36:21 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/08 12:44:10 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/02 11:06:08 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	rotate(t_stack *stack)
+int	rotate(t_list **stack)
 {
-	t_node	*head;
-	t_node	*end;
+	t_list	*head;
+	t_list	*tail;
 
-	if (ft_lstsize(stack) < 2)
+	if (ft_lstsize(*stack) < 2)
 		return (-1);
-	head = stack->top;
-	end = ft_lstlast(stack);
-	stack->top = head->next;
+	head = *stack;
+	tail = ft_lstlast(head);
+	*stack = head->next;
 	head->next = NULL;
-	end->next = head;
+	tail->next = head;
 	return (0);
 }
 
-void	ra(t_stack *a)
+int	ra(t_list **stack_a)
 {
-	rotate(a);
+	if (rotate(stack_a) == -1)
+		return (-1);
 	ft_putendl_fd("ra", 1);
+	return (0);
 }
 
-void	rb(t_stack *b)
+int	rb(t_list **stack_b)
 {
-	rotate(b);
+	if (rotate(stack_b) == -1)
+		return (-1);
 	ft_putendl_fd("rb", 1);
+	return (0);
 }
 
-void	rr(t_stack *a, t_stack *b)
+int	rr(t_list **stack_a, t_list **stack_b)
 {
-	rotate(a);
-	rotate(b);
+	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
+		return (-1);
+	rotate(stack_a);
+	rotate(stack_b);
 	ft_putendl_fd("rr", 1);
+	return (0);
 }

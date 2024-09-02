@@ -6,13 +6,13 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:07:13 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/09 15:20:16 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/02 12:12:01 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	sort_5(t_stack *a, t_stack *b)
+void	sort_5(t_list **a, t_list **b)
 {
 	int	dis;
 

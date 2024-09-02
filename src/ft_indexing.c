@@ -5,48 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/28 17:12:27 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/28 17:31:08 by msolinsk         ###   ########.fr       */
+/*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
+/*   Updated: 2024/09/02 12:17:25 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static t_node	*ft_get_next_mininum(t_stack *stack)
+static t_list	*get_next_min(t_list **stack)
 {
-	t_node	*head;
-	t_node	*min;
-	int		min_index;
+	t_list	*head;
+	t_list	*min;
+	int		has_min;
 
-	head = stack->top;
 	min = NULL;
-	min_index = 0;
-	if (!head)
-		return (NULL);
-	while (head)
+	has_min = 0;
+	head = *stack;
+	if (head)
 	{
-		if ((head->index == -1) && (!min_index || head->value < min->value))
+		while (head)
 		{
-			min = head;
-			min_index = 1;
+			if ((head->index == -1) && (!has_min || head->value < min->value))
+			{
+				min = head;
+				has_min = 1;
+			}
+			head = head->next;
 		}
-		head = head->next;
 	}
 	return (min);
 }
 
-void	ft_index_stack(t_stack *stack)
+void	index_stack(t_list **stack)
 {
-	t_node	*head;
+	t_list	*head;
 	int		index;
 
 	index = 0;
-	head = ft_get_next_mininum(stack);
+	head = get_next_min(stack);
 	while (head)
 	{
-		head->index = index;
-		head = ft_get_next_mininum(stack);
-		index++;
+		head->index = index++;
+		head = get_next_min(stack);
 	}
-
 }
+

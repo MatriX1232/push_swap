@@ -6,21 +6,21 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:44:19 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/08 12:54:25 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/02 11:36:55 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	reverse_rotate(t_stack *stack)
+int	reverseRotate(t_list **stack)
 {
-	t_node	*head;
-	t_node	*end;
+	t_list	*head;
+	t_list	*tail;
 
-	if (ft_lstsize(stack) < 2)
+	if (ft_lstsize(*stack) < 2)
 		return (-1);
-	head = stack->top;
-	end = ft_lstlast(stack);
+	head = *stack;
+	tail = ft_lstlast(head);
 	while (head)
 	{
 		if (head->next->next == NULL)
@@ -30,26 +30,33 @@ int	reverse_rotate(t_stack *stack)
 		}
 		head = head->next;
 	}
-	end->next = stack->top;
-	stack->top = end;
+	tail->next = *stack;
+	*stack = tail;
 	return (0);
 }
 
-void	rra(t_stack *a)
+int	rra(t_list **stack_a)
 {
-	reverse_rotate(a);
+	if (reverseRotate(stack_a) == -1)
+		return (-1);
 	ft_putendl_fd("rra", 1);
+	return (0);
 }
 
-void	rrb(t_stack *b)
+int	rrb(t_list **stack_b)
 {
-	reverse_rotate(b);
+	if (reverseRotate(stack_b) == -1)
+		return (-1);
 	ft_putendl_fd("rrb", 1);
+	return (0);
 }
 
-void	rrr(t_stack *a, t_stack *b)
+int	rrr(t_list **stack_a, t_list **stack_b)
 {
-	reverse_rotate(a);
-	reverse_rotate(b);
+	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
+		return (-1);
+	reverseRotate(stack_a);
+	reverseRotate(stack_b);
 	ft_putendl_fd("rrr", 1);
+	return (0);
 }

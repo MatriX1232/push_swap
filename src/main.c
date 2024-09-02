@@ -5,89 +5,76 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/09 13:23:49 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/28 17:27:26 by msolinsk         ###   ########.fr       */
+/*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
+/*   Updated: 2024/09/02 16:50:10 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	ft_get_tab_len(char **tab)
+t_list	*ft_malloc_stack(t_list *stack)
 {
-	int	len;
-
-	len = 0;
-	while (tab[len])
-		len++;
-	return (len);
-}
-
-static t_stack	*ft_init_stack(void)
-{
-	t_stack	*stack;
-
-	stack = (t_stack *) malloc(1 * sizeof(t_stack));
+	stack = (t_list *)malloc(1 * sizeof(t_list));
 	if (!stack)
-		return (NULL);
-	stack->size = 0;
-	stack->top = NULL;
+		ft_print_error("CAnnot allocate memory!\n");
 	return (stack);
 }
 
-static void	ft_fill_stack(int argc, char *argv[], t_stack *stack)
+static void	initStack(t_list **stack, int argc, char **argv)
 {
+	t_list	*new;
+	char	**args;
 	int		i;
-	char	**parms;
-	t_node	*new;
 
 	i = 0;
 	if (argc == 2)
-		parms = ft_split(argv[1], ' ');
+		args = ft_split(argv[1], ' ');
 	else
 	{
 		i = 1;
-		parms = argv;
+		args = argv;
 	}
-	while (parms[i])
+	while (args[i])
 	{
-		new = ft_lstnew(ft_atoi(parms[i]));
+		new = ft_lstnew(ft_atoi(args[i]));
 		ft_lstadd_back(stack, new);
 		i++;
 	}
-	ft_index_stack(stack);
+	index_stack(stack);
 	if (argc == 2)
-		ft_free(parms);
+		ft_free(args);
 }
 
-static void	ft_sort_stack(t_stack *a, t_stack *b)
+static void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
-	if (ft_lstsize(a) < 6)
-		sort_simple(a, b);
+	if (ft_lstsize(*stack_a) < 6)
+		sort_simple(stack_a, stack_b);
 	else
-		sort_radix(a, b);
+		radix_sort(stack_a, stack_b);
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_list	**stack_a;
+	t_list	**stack_b;
 
-	stack_a = ft_init_stack();
-	stack_b = ft_init_stack();
-	if (!stack_a || !stack_b)
-		return (EXIT_FAILURE);
-	if (ft_check_args(argc, argv) != 1)
-		return (EXIT_FAILURE);
-	ft_fill_stack(argc, argv, stack_a);
+	if (argc < 2)
+		return (-1);
+	ft_check_args(argc, argv);
+	stack_a = (t_list **)malloc(sizeof(t_list));
+	stack_b = (t_list **)malloc(sizeof(t_list));
+	*stack_a = NULL;
+	*stack_b = NULL;
+	initStack(stack_a, argc, argv);
 	if (is_sorted(stack_a))
 	{
-		ft_free_stack(stack_a);
-		ft_free_stack(stack_b);
-		return (EXIT_SUCCESS);
+		free_stack(stack_a);
+		free_stack(stack_b);
+		return (0);
 	}
-	ft_sort_stack(stack_a, stack_b);
-	(void)ft_print_stack;
-	ft_free_stack(stack_a);
-	ft_free_stack(stack_b);
-	return (EXIT_SUCCESS);
+	sort_stack(stack_a, stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
+	return (0);
 }
+

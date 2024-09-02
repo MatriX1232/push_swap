@@ -5,59 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/09 13:28:24 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/27 23:12:07 by msolinsk         ###   ########.fr       */
+/*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
+/*   Updated: 2024/09/02 13:06:14 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ft_free(char **parms)
+static int	ft_contains(int num, char **argv, int i)
 {
-	int	i;
-
-	i = 0;
-	while (parms[i])
-		free(parms[i++]);
-	free(parms);
+	i++;
+	while (argv[i])
+	{
+		if (ft_atoi(argv[i]) == num)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-int	ft_check_all_are_nums(char **parms)
+static int	ft_isnum(char *num)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	while (parms[i])
+	if (num[0] == '-')
+		i++;
+	while (num[i])
 	{
-		j = 0;
-		while (parms[i][j])
-		{
-			if (!ft_isdigit(parms[i][j]))
-				return (-1);
-			j++;
-		}
+		if (!ft_isdigit(num[i]))
+			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int	ft_check_args(int argc, char *argv[])
+void	ft_check_args(int argc, char **argv)
 {
-	char	**parms;
+	int		i;
+	long	tmp;
+	char	**args;
 
+	i = 0;
 	if (argc == 2)
-		parms = ft_split(argv[1], ' ');
+		args = ft_split(argv[1], ' ');
 	else
-		parms = argv;
-	if (ft_check_all_are_nums(parms) == -1)
 	{
-		ft_print_error("In parameters detected something more than digits!");
-		if (argc == 2)
-			ft_free(parms);
-		return (-1);
+		args = argv;
+		i = 1;
+	}
+	while (args[i])
+	{
+		tmp = ft_atoi(args[i]);
+		if (!ft_isnum(args[i]))
+			ft_print_error("At least one of parameters is not a number");
+		if (ft_contains(tmp, args, i))
+			ft_print_error("At least one of parameters is duplicated");
+		if (tmp < -2147483648 || tmp > 2147483647)
+			ft_print_error("At least one of parameters is out of int range");
+		i++;
 	}
 	if (argc == 2)
-		ft_free(parms);
-	return (1);
+		ft_free(args);
 }

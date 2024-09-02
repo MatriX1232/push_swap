@@ -6,36 +6,30 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:54:02 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/08/09 15:20:31 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/02 12:12:39 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	if_one(t_stack *stack)
+static void	if_one(t_list **stack)
 {
 	ra(stack);
 	sa(stack);
 	rra(stack);
 }
 
-static void	if_two(t_stack *stack, int min)
+static void	if_two(t_list **stack, int min)
 {
-	t_node	*head;
-
-	head = stack->top;
-	if (head->next->index == min)
+	if ((*stack)->next->index == min)
 		sa(stack);
 	else
 		rra(stack);
 }
 
-static void	if_three(t_stack *stack, int min)
+static void	if_three(t_list **stack, int min)
 {
-	t_node	*head;
-
-	head = stack->top;
-	if (head->next->index == min)
+	if ((*stack)->next->index == min)
 		ra(stack);
 	else
 	{
@@ -44,13 +38,13 @@ static void	if_three(t_stack *stack, int min)
 	}
 }
 
-void	sort_3(t_stack *stack)
+void	sort_3(t_list **stack)
 {
-	t_node	*head;
+	t_list	*head;
 	int		min;
 	int		min_next;
 
-	head = stack->top;
+	head = *stack;
 	min = get_min_index(stack, -1);
 	min_next = get_min_index(stack, min);
 	if (is_sorted(stack))
