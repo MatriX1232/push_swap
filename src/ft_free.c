@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:51:49 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/09/02 18:54:56 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:58:31 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_free(char **parms)
 	len = ft_get_tab_len(parms);
 	while (len >= 0)
 		free(parms[len--]);
+	free(parms);
 }
 
 void	ft_free_nodes(t_list **stack)

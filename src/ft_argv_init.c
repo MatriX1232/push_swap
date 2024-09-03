@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 13:06:14 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:23:24 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_isnum(char *num)
 	return (1);
 }
 
-void	ft_check_args(int argc, char **argv)
+void	ft_parse_parameters(int argc, char **argv)
 {
 	int		i;
 	long	tmp;
@@ -58,11 +58,11 @@ void	ft_check_args(int argc, char **argv)
 	{
 		tmp = ft_atoi(args[i]);
 		if (!ft_isnum(args[i]))
-			ft_print_error("At least one of parameters is not a number");
+			ft_print_error("Error\n");
 		if (ft_contains(tmp, args, i))
-			ft_print_error("At least one of parameters is duplicated");
+			ft_print_error("Error\n");
 		if (tmp < -2147483648 || tmp > 2147483647)
-			ft_print_error("At least one of parameters is out of int range");
+			ft_print_error("Error\n");
 		i++;
 	}
 	if (argc == 2)

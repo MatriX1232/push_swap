@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 21:04:47 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:24:33 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	**ft_malloc_stack(t_list **stack)
 {
 	stack = (t_list **) malloc(1 * sizeof(t_list));
 	if (!stack)
-		ft_print_error("Cannot allocate memory!\n");
+		ft_print_error("Error\n");
 	*stack = NULL;
 	return (stack);
 }
@@ -41,7 +41,7 @@ static void	ft_init_stack(t_list **stack, int argc, char **argv)
 		ft_lstadd_back(stack, new);
 		i++;
 	}
-	index_stack(stack);
+	ft_index_nodes(stack);
 	if (argc == 2)
 		ft_free(args);
 }
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (EXIT_FAILURE);
-	ft_check_args(argc, argv);
+	ft_parse_parameters(argc, argv);
 	stack_a = NULL;
 	stack_b = NULL;
 	stack_a = ft_malloc_stack(stack_a);

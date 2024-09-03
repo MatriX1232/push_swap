@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 21:05:59 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:13:31 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_lstsize(t_list *head);
 
 // FT_UTILS.C
 void	ft_error(char *msg);
-void	ft_check_args(int argc, char **argv);
+void	ft_parse_parameters(int argc, char **argv);
 int		is_sorted(t_list **stack);
 int		get_dis(t_list **stack, int index);
 void	make_top(t_list **stack, int distance);
@@ -46,12 +46,14 @@ int		get_min_index(t_list **stack, int val);
 
 /*
 FT_SIMPLE_SORT.C FT_RADIX_SORT.C
-FT_SORT_5.C FT_SIMPLE_SORT_3.C
-FT_SIMPLE_SORT_4.C FT_SIMPLE_SORT.C
+FT_SORT_5.C
+FT_SIMPLE_SORT_4.C
+FT_SIMPLE_SORT_3.C
+FT_INDEXING.C
 */
 void	sort_radix(t_list **a, t_list **b);
 void	simple_sort(t_list **a, t_list **b);
-void	index_stack(t_list **stack);
+void	ft_index_nodes(t_list **stack);
 
 void	sort_4(t_list **stack_a, t_list **stack_b);
 void	sort_3(t_list **stack);

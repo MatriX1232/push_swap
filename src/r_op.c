@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:36:21 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/09/02 11:06:08 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:25:16 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,28 @@ int	rotate(t_list **stack)
 	return (0);
 }
 
-int	ra(t_list **stack_a)
+int	ra(t_list **a)
 {
-	if (rotate(stack_a) == -1)
+	if (rotate(a) == -1)
 		return (-1);
 	ft_putendl_fd("ra", 1);
 	return (0);
 }
 
-int	rb(t_list **stack_b)
+int	rb(t_list **b)
 {
-	if (rotate(stack_b) == -1)
+	if (rotate(b) == -1)
 		return (-1);
 	ft_putendl_fd("rb", 1);
 	return (0);
 }
 
-int	rr(t_list **stack_a, t_list **stack_b)
+int	rr(t_list **a, t_list **b)
 {
-	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
+	if ((ft_lstsize(*a) < 2) || (ft_lstsize(*b) < 2))
 		return (-1);
-	rotate(stack_a);
-	rotate(stack_b);
+	rotate(a);
+	rotate(b);
 	ft_putendl_fd("rr", 1);
 	return (0);
 }

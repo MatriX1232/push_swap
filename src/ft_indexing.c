@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 17:09:58 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:37:47 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_list	*get_next_min(t_list **stack)
 	return (min);
 }
 
-void	index_stack(t_list **stack)
+void	ft_index_nodes(t_list **stack)
 {
 	t_list	*head;
 	int		index;
