@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/04 23:53:22 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/05 00:03:18 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ft_isnumerical(char *c)
 	return (1);
 }
 
-static int ft_checker(char **parms, int tmp, int i, int malloc)
+static int	ft_checker(char **parms, int tmp, int i, int malloc)
 {
 	if (!ft_isnumerical(parms[i]))
 		return (ft_print_error("Error\n", parms, malloc), 1);
