@@ -6,16 +6,18 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/04 14:03:16 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:55:14 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
 //		Puts error message in stderr (standard error)
-void	ft_print_error(char *msg)
+void	ft_print_error(char *msg, char **parms, int malloc)
 {
 	ft_putstr_fd(msg, 2);
+	if (malloc == 1)
+		ft_free(parms);
 	exit(EXIT_FAILURE);
 }
 

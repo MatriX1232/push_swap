@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/04 11:24:45 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:50:42 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		get_dis(t_list **stack, int index);
 void	make_top(t_list **stack, int distance);
 void	ft_free_nodes(t_list **stack);
 void	ft_free(char **str);
-void	ft_print_error(char *msg);
+void	ft_print_error(char *msg, char **parms, int flag);
 int		get_min_index(t_list **stack, int val);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/04 14:06:23 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:52:55 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	**ft_malloc_stack(t_list **stack)
 {
 	stack = (t_list **) malloc(1 * sizeof(t_list));
 	if (!stack)
-		ft_print_error("Error\n");
+		ft_print_error("Error\n", NULL, 0);
 	*stack = NULL;
 	return (stack);
 }

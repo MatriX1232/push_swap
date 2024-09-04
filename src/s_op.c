@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:55:12 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/09/03 12:22:26 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:55:23 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	swap(t_list **stack)
 	head = *stack;
 	next = head->next;
 	if (!head && !next)
-		ft_print_error("Error\n");
+		ft_print_error("Error\n", NULL, 0);
 	tmp_val = head->value;
 	tmp_index = head->index;
 	head->value = next->value;
