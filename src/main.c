@@ -6,12 +6,13 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/04 13:39:54 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:06:23 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+//		Allocates memory for the pointer
 t_list	**ft_malloc_stack(t_list **stack)
 {
 	stack = (t_list **) malloc(1 * sizeof(t_list));
@@ -22,7 +23,9 @@ t_list	**ft_malloc_stack(t_list **stack)
 }
 
 /*
+	This function pushes nodes to the stack.
 
+	It uses ft_lstadd_back to add node at the end of stack.
 */
 static void	ft_init_stack(t_list **stack, int argc, char **argv)
 {
@@ -49,7 +52,7 @@ static void	ft_init_stack(t_list **stack, int argc, char **argv)
 		ft_free(args);
 }
 
-//			This function decides to sort with simple sort or with radix sort
+//	This function decides to sort with simple sort or with radix sort
 static void	sort_stack(t_list **a, t_list **b)
 {
 	if (ft_lstsize(*a) < 6)

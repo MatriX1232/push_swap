@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/04 13:42:14 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:03:16 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	ft_move_with_dis(t_list **stack, t_list *head, int dis, int tmp)
 /*
 	The function moves node at the specified distance from the head of
 		linked list to the top of the list.
+
 	It is done by rotating and reverse rotating the stack,
 	to achive this node movement
 

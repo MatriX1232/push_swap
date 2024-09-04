@@ -6,12 +6,16 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:17:34 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/09/04 12:29:30 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:24:19 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+/*
+	Returns the maximum number of bits required to represent
+	the index of any node in the stack
+*/
 static int	ft_get_maximum_bits(t_list **stack)
 {
 	t_list	*head;
@@ -40,12 +44,21 @@ static void	if_one(t_list **a, t_list **b, t_list *top_a, int i)
 		pb(a, b);
 }
 
+//	Push the rest of nodes in stack b to the stack a
 static void	ft_push_rest_to_a(t_list **a, t_list **b)
 {
 	while (ft_lstsize(*b) != 0)
 		pa(a, b);
 }
 
+/*
+	This is radix sorting alhorithm.
+	It performes indexing using base-2 (binary) system.
+
+	This is non-comparative intiger sorting algorithm.
+	It means that it doesn't compare the values of the nodes to sort them.
+	It uses the binary representation of their index.
+*/
 void	sort_radix(t_list **a, t_list **b)
 {
 	int		i;
