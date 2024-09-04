@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:55:47 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/09/03 12:26:18 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:20:46 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ void	ft_print_stack(t_list **stack)
 
 int	get_min_index(t_list **stack, int val)
 {
-	t_list	*head;
 	int		min;
+	t_list	*head;
 
 	head = *stack;
 	min = head->index;
 	while (head->next)
 	{
 		head = head->next;
-		if ((head->index < min) && head->index != val)
+		if (head->index != val && head->index < min)
 			min = head->index;
 	}
 	return (min);
@@ -46,11 +46,11 @@ void	sort_simple(t_list **a, t_list **b)
 {
 	int	size;
 
+	size = ft_lstsize(*a);
 	if (is_sorted(a))
 		return ;
 	if (ft_lstsize(*a) == 0 || ft_lstsize(*a) == 1)
 		return ;
-	size = ft_lstsize(*a);
 	if (size == 2)
 		sa(a);
 	else if (size == 3)

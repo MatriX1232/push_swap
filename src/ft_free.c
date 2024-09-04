@@ -6,12 +6,13 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 18:51:49 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/09/03 13:58:31 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:51:37 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+//			Check for length of array
 static int	ft_get_tab_len(char **parms)
 {
 	int	len;
@@ -22,6 +23,7 @@ static int	ft_get_tab_len(char **parms)
 	return (len);
 }
 
+//		Free each of ther pointers and array
 void	ft_free(char **parms)
 {
 	int	len;
@@ -32,6 +34,7 @@ void	ft_free(char **parms)
 	free(parms);
 }
 
+//		Free the whole linked list (stack / nodes)
 void	ft_free_nodes(t_list **stack)
 {
 	t_list	*head;

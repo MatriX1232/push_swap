@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/03 12:24:33 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:39:54 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ t_list	**ft_malloc_stack(t_list **stack)
 	return (stack);
 }
 
+/*
+
+*/
 static void	ft_init_stack(t_list **stack, int argc, char **argv)
 {
 	t_list	*new;
@@ -46,6 +49,7 @@ static void	ft_init_stack(t_list **stack, int argc, char **argv)
 		ft_free(args);
 }
 
+//			This function decides to sort with simple sort or with radix sort
 static void	sort_stack(t_list **a, t_list **b)
 {
 	if (ft_lstsize(*a) < 6)

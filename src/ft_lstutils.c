@@ -6,12 +6,13 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/02 21:04:01 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:11:55 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+//	Creates a new node and assign to it passed value.
 t_list	*ft_lstnew(int val)
 {
 	t_list	*new;
@@ -25,6 +26,7 @@ t_list	*ft_lstnew(int val)
 	return (new);
 }
 
+//	Returns a size of linked list
 int	ft_lstsize(t_list *head)
 {
 	size_t	i;
@@ -40,6 +42,7 @@ int	ft_lstsize(t_list *head)
 	return (i);
 }
 
+//		Traverses the linked list at retrive the last node if it
 t_list	*ft_lstlast(t_list *head)
 {
 	t_list	*tmp;
@@ -54,12 +57,14 @@ t_list	*ft_lstlast(t_list *head)
 	return (tmp);
 }
 
+//		Adds a new node at the front of linked list
 void	ft_lstadd_front(t_list **stack, t_list *new)
 {
 	new->next = *stack;
 	*stack = new;
 }
 
+//		Adds a new node at the back of linked lis5t
 void	ft_lstadd_back(t_list **stack, t_list *new)
 {
 	t_list	*n;

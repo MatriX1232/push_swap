@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 12:17:34 by msolinsk          #+#    #+#             */
-/*   Updated: 2024/09/03 12:11:56 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:29:30 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ static int	ft_get_maximum_bits(t_list **stack)
 	return (max_b);
 }
 
+static void	if_one(t_list **a, t_list **b, t_list *top_a, int i)
+{
+	if (((top_a->index >> i) & 1) == 1)
+		ra(a);
+	else
+		pb(a, b);
+}
+
+static void	ft_push_rest_to_a(t_list **a, t_list **b)
+{
+	while (ft_lstsize(*b) != 0)
+		pa(a, b);
+}
+
 void	sort_radix(t_list **a, t_list **b)
 {
 	int		i;
@@ -47,16 +61,13 @@ void	sort_radix(t_list **a, t_list **b)
 	while (i < max_b)
 	{
 		j = 0;
-		while (j++ < size)
+		while (j < size)
 		{
 			top_a = *a;
-			if (((top_a->index >> i) & 1) == 1)
-				ra(a);
-			else
-				pb(a, b);
+			if_one(a, b, top_a, i);
+			j++;
 		}
-		while (ft_lstsize(*b) != 0)
-			pa(a, b);
+		ft_push_rest_to_a(a, b);
 		i++;
 	}
 }
