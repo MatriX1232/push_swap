@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/04 23:50:42 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:33:53 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../ft_printf/ft_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 // Stack
 typedef struct s_list
@@ -43,6 +44,8 @@ void	ft_free_nodes(t_list **stack);
 void	ft_free(char **str);
 void	ft_print_error(char *msg, char **parms, int flag);
 int		get_min_index(t_list **stack, int val);
+
+long	ft_atol(char *str);
 
 /*
 FT_SIMPLE_SORT.C FT_RADIX_SORT.C

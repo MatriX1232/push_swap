@@ -6,7 +6,7 @@
 /*   By: msolinsk <msolinsk@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 18:33:22 by shovsepy          #+#    #+#             */
-/*   Updated: 2024/09/05 00:03:18 by msolinsk         ###   ########.fr       */
+/*   Updated: 2024/09/05 13:06:12 by msolinsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static int	ft_isnumerical(char *c)
 	index = 0;
 	if (c[0] == '-')
 		index++;
+	if (!c[index])
+	{
+		if (c[0] == '-' || c[0] == '+')
+			return (0);
+	}
 	while (c[index])
 	{
 		if (!ft_isdigit(c[index]))
@@ -42,15 +47,41 @@ static int	ft_isnumerical(char *c)
 	return (1);
 }
 
-static int	ft_checker(char **parms, int tmp, int i, int malloc)
+static void	ft_checker(char **parms, long tmp, int i, int malloc)
 {
 	if (!ft_isnumerical(parms[i]))
-		return (ft_print_error("Error\n", parms, malloc), 1);
+		return (ft_print_error("Error\n", parms, malloc));
 	if (ft_check_for_duplicates(tmp, parms, i))
-		return (ft_print_error("Error\n", parms, malloc), 1);
-	if (tmp < -2147483648 || tmp > 2147483647)
-		return (ft_print_error("Error\n", parms, malloc), 1);
-	return (0);
+		return (ft_print_error("Error\n", parms, malloc));
+	if (tmp < INT_MIN)
+		return (ft_print_error("Error\n", parms, malloc));
+	if (tmp > INT_MAX)
+		return (ft_print_error("Error\n", parms, malloc));
+}
+
+long	ft_atol(char *str)
+{
+	long	num;
+	int		i;
+	int		sign;
+
+	i = 0;
+	num = 0;
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + str[i] - '0';
+		i++;
+	}
+	return (num * sign);
 }
 
 /*
@@ -86,7 +117,7 @@ void	ft_parse_parameters(int argc, char **argv)
 		malloc = 0;
 	while (parms[i])
 	{
-		tmp = ft_atoi(parms[i]);
+		tmp = ft_atol(parms[i]);
 		ft_checker(parms, tmp, i, malloc);
 		i++;
 	}
